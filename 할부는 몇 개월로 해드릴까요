@@ -1,0 +1,13 @@
+-- https://solvesql.com/problems/installment-month/
+SELECT
+  o.payment_installments AS payment_installments,
+  count(distinct o.order_id) AS order_count,
+  MIN(o.payment_value) AS min_value,
+  MAX(o.payment_value) AS max_value,
+  AVG(o.payment_value) AS avg_value
+FROM
+  olist_order_payments_dataset AS o
+where
+  o.payment_type = "credit_card"
+GROUP BY
+  o.payment_installments;
