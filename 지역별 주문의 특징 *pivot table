@@ -1,0 +1,13 @@
+--https://solvesql.com/problems/characteristics-of-orders/
+--creating pivot table in MYSQL
+SELECT
+  REGION as "Region",
+  COUNT(DISTINCT CASE WHEN CATEGORY = "Furniture" THEN order_id END) AS Furniture,
+  COUNT(DISTINCT CASE WHEN CATEGORY =  "Office Supplies" THEN order_id END) AS "Office Supplies",
+  COUNT(DISTINCT CASE WHEN CATEGORY =  "Technology" THEN order_id END) AS Technology
+FROM
+  records
+GROUP BY
+  REGION
+ORDER BY
+  REGION ASC;
