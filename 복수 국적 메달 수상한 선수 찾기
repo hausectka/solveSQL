@@ -1,0 +1,17 @@
+-- https://solvesql.com/problems/multiple-medalist/
+SELECT
+  a.name AS name
+FROM
+  athletes AS a
+  join records AS r ON a.id = r.athlete_id
+  join teams AS t ON t.id = r.team_id
+  join games AS g ON r.game_id = g.id
+WHERE
+  r.medal NOT NULL
+  and g.year >= 2000
+GROUP BY
+  r.athlete_id
+HAVING
+  COUNT(DISTINCT t.team) > 1
+ORDER BY
+  a.name ASC
