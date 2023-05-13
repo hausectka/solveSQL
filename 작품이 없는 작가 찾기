@@ -1,0 +1,10 @@
+--https://solvesql.com/problems/artists-without-artworks/
+SELECT
+  a.artist_id AS artist_id,
+  a.name as name
+FROM
+  artists a
+  LEFT JOIN artworks_artists aa ON a.artist_id = aa.artist_id --artists who don't have artpiece in MOMA
+WHERE
+  a.death_year IS NOT NULL
+  and aa.artwork_id IS NULL
