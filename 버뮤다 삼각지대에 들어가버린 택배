@@ -1,0 +1,14 @@
+--https://solvesql.com/problems/shipment-in-bermuda/
+
+SELECT
+  DATE(order_delivered_carrier_date) AS delivered_carrier_date,
+  COUNT(order_id) AS orders
+FROM
+  olist_orders_dataset
+WHERE
+  order_delivered_customer_date IS NULL
+  AND DATE(order_delivered_carrier_date) BETWEEN '2017-01-01' and '2017-01-31'
+GROUP BY
+  DATE(order_delivered_carrier_date)
+ORDER BY
+  date(order_delivered_carrier_date);
